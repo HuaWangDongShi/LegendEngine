@@ -1,15 +1,8 @@
-﻿#define NDEBUG
-#include <cstdio>
+﻿#include <cstdio>
 #include <iostream>
 #include <windows.h>
-//
-// #ifdef _MSC_VER
-// #    pragma comment(linker,"/subsystem:windows /ENTRY:mainCRTStartup")
-// #endif
 
-#ifndef UNICODE
-#define UNICODE
-#endif
+
 #ifdef _WINDOWS_
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
