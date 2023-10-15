@@ -34,9 +34,9 @@ jobs:
 
             -   name: Build
                 run: |
-                    github_changelog_generator -u HuaWangDongShi -p LegendEngine --token  ${{ secrets.GITHUB_TOKEN }} --since-tag ${{ github.ref_name }} --output CHANGELOG.md
-                    msbuild -p:Configuration=Release -p:Platform=x64 Interface/Interface.vcxproj
-                    C:\Users\runneradmin\.nuget\packages\microsoft.codecoverage\16.11.0\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:DynamicCodeCoverage.coveragexml DynamicCodeCoverage.coverage
+                    github_changelog_generator -u HuaWangDongShi -p LegendEngine --token  ${{ secrets.GITHUB_TOKEN }} --since-tag ${{ github.ref_name }} --output CHANGELOG.md \
+                    && msbuild -p:Configuration=Release -p:Platform=x64 Interface/Interface.vcxproj \
+                    && C:\Users\runneradmin\.nuget\packages\microsoft.codecoverage\16.11.0\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:DynamicCodeCoverage.coveragexml DynamicCodeCoverage.coverage
                     
                     
            
