@@ -33,12 +33,13 @@ jobs:
             -   run: gem install github_changelog_generator
 
             -   name: Build
-                run: |
-                    github_changelog_generator -u HuaWangDongShi -p LegendEngine --token  ${{ secrets.GITHUB_TOKEN }} --since-tag ${{ github.ref_name }} --output CHANGELOG.md \
-                    && msbuild -p:Configuration=Release -p:Platform=x64 Interface/Interface.vcxproj \
-                    && C:\Users\runneradmin\.nuget\packages\microsoft.codecoverage\16.11.0\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:DynamicCodeCoverage.coveragexml DynamicCodeCoverage.coverage
-                    
-                    
+                run: msbuild -p:Configuration=Release -p:Platform=x64 Interface/Interface.vcxproj
+            
+            -   name: codecoverageXML
+                run: C:\Users\runneradmin\.nuget\packages\microsoft.codecoverage\16.11.0\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:DynamicCodeCoverage.coveragexml DynamicCodeCoverage.coverage
+              
+            -   name: ChangLog
+                run: github_changelog_generator -u HuaWangDongShi -p LegendEngine --token  ${{ secrets.GITHUB_TOKEN }} --since-tag ${{ github.ref_name }} --output CHANGELOG.md        
            
             -   name: Upload coverage reports to Codecov
                 uses: codecov/codecov-action@v3
